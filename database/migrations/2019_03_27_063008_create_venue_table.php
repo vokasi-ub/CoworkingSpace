@@ -14,7 +14,7 @@ class CreateVenueTable extends Migration
     public function up()
     {
         Schema::create('venue', function (Blueprint $table) {
-            $table->string('id_venue',25);
+            $table->increments('id_venue');
             $table->string('nama_tempat',75);
             $table->string('jenis',45);
             $table->text('deksripsi');

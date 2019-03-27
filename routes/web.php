@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('dashboard', function () {
+    return view("Dashboard.dashboard");
+});
+
+Route::resource('JenisEvent','JenisController');
