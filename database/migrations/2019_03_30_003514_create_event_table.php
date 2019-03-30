@@ -21,6 +21,7 @@ class CreateEventTable extends Migration
             $table->text('deskripsi');
             $table->date('waktu_event');
             $table->string('pemateri',75);
+            $table->string('image',125);
             $table->timestamps();
         });
     }

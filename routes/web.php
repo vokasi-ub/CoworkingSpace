@@ -16,7 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('dashboard', function () {
-    return view("Dashboard.dashboard");
+    return view("dashboard.dashboard");
 });
 
 Route::resource('JenisEvent','JenisController');
+Route::resource('venue','VenueController');

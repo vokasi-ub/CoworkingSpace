@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+  <title>Coworking Space Admin</title>
   <!-- Favicon -->
   <link href="{{ asset('assets/img/brand/favicon.png')}}" rel="icon" type="image/png">
   <!-- Fonts -->
@@ -21,20 +21,20 @@
 <body>
   <!-- Sidenav -->
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-        @include('layouts.sidebar')
+        @include('layouts.admin.sidebar')
   </nav>
   <!-- Main content -->
   <div class="main-content">
     <!-- Top navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-		@include('layouts.header')
+		@include('layouts.admin.header')
     </nav>
     <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8"></div>
     <!-- Page content -->
     <div class="container-fluid mt--9">
         @yield('content')
-        @include('layouts.footer')
+        @include('layouts.admin.footer')
     </div>
   
   </div>

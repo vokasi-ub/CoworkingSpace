@@ -1,4 +1,4 @@
-@extends('layouts.masterAdmin')
+@extends('layouts.admin.masterAdmin')
   @section('content')<!-- Content Header (Page header) -->
                <div class="header-body">
           <!-- Card stats -->
