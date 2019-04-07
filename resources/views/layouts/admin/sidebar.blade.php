@@ -49,7 +49,7 @@
               <span>Support</span>
             </a>
             <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
+            <a href="index.html" class="dropdown-item">
               <i class="ni ni-user-run"></i>
               <span>Logout</span>
             </a>
@@ -88,28 +88,31 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="./index.html">
+            <a class="nav-link" href="./dashboard">
               <i class="ni ni-tv-2 text-primary"></i> Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./examples/icons.html">
-              <i class="ni ni-planet text-blue"></i> Icons
+            <a class="nav-link" href="/venue">
+              <i class="ni ni-shop text-blue"></i> Venue
             </a>
           </li>
+   
           <li class="nav-item">
-            <a class="nav-link" href="./examples/maps.html">
-              <i class="ni ni-pin-3 text-orange"></i> Maps
+            <a class="nav-link" href="/user">
+              <i class="ni ni-single-02 text-yellow"></i> User Registration
             </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="./examples/profile.html">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
+            <a class="nav-link" href="/transaksi">
+              <i class="ni ni-credit-card text-blue"></i> Transaksi
             </a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="./examples/tables.html">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
+            <a class="nav-link" href="./event">
+              <i class="ni ni-book-bookmark text-green"></i> Event
             </a>
           </li>
     
@@ -130,11 +133,7 @@
               <i class="ni ni-palette"></i> Foundation
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
-            </a>
-          </li>
+     
         </ul>
       </div>
     </div>

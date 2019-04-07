@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Venue;
 use DB;
+use \Auth;
+use Illuminate\Support\Facades\Session;
 
-class venueController extends Controller
+
+
+class VenueController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +26,10 @@ class venueController extends Controller
         $venue = Venue::when($request->keyword, function ($query) use ($request) {
         $query->where('nama_venue', 'like', "%{$request->keyword}%");
         })->get();
-        return view('venue.dataVenue',compact('venue'));
+        return view('admin.venue.dataVenue',compact('venue'));
+        
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +52,7 @@ class venueController extends Controller
     {
         $request->validate([
             'nama_tempat'   =>'required',
-            'jenis'         =>'required',
+            'harga'         =>'required',
             'deskripsi'     =>'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
  
@@ -54,7 +63,7 @@ class venueController extends Controller
         
           $venue = new Venue([
           'nama_tempat'   => $request->get('nama_tempat'),
-          'jenis'         => $request->get('jenis'),
+          'harga'         => $request->get('harga'),
           'deskripsi'     => $request->get('deskripsi'),
           'image'         => $imageName
           ]);
@@ -84,7 +93,7 @@ class venueController extends Controller
     public function edit($id)
     {
         $venue = Venue::find($id);
-        return view('venue.editVenue',compact('venue'));
+        return view('admin.venue.editVenue',compact('venue'));
     }
 
     /**
@@ -98,7 +107,7 @@ class venueController extends Controller
     {
             $request->validate([
                 'nama_tempat'   =>'required',
-                'jenis'         =>'required',
+                'harga'         =>'required',
                 'deskripsi'     =>'required',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
@@ -108,14 +117,14 @@ class venueController extends Controller
 
           $venue = Venue::find($id);
           $venue->nama_tempat   = $request->get('nama_tempat');
-          $venue->jenis         = $request->get('jenis');
+          $venue->harga         = $request->get('harga');
           $venue->deskripsi     = $request->get('deskripsi');
           $venue->image         = $imageName;
           $venue->save();
           return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
     }
 	
-    /**
+    /** 
      * Remove the specified resou   rce from storage.
      *
      * @param  int  $id

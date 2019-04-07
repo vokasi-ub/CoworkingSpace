@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -18,15 +19,21 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
-
+    use AuthenticatesUsers {
+     logout as performLogout;
+    }
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-
+    
+    protected $redirectTo = '/dashboard';
+    public function logout(Request $request)
+    {
+        $this->performLogout($request);
+        return redirect()->route('login');
+    }
     /**
      * Create a new controller instance.
      *

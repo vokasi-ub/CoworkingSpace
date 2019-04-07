@@ -16,7 +16,7 @@ class CreateVenueTable extends Migration
         Schema::create('venue', function (Blueprint $table) {
             $table->increments('id_venue');
             $table->string('nama_tempat',45);
-            $table->string('jenis',75);
+            $table->integer('harga');
             $table->text('deskripsi');
             $table->string('image',125);
             $table->timestamps();

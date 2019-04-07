@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Middleware\statusAdmin;
+use App\Http\Middleware\statusUser;
+
+Auth::routes();
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,13 +16,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontController@index');
+Route::resource('venue','VenueController')->middleware(statusAdmin::class);
+Route::resource('dashboard','DashboardController')->middleware(statusAdmin::class);
+Route::resource('home','HomeController')->middleware(statusUser::class);
+Route::post('home.event','HomeController@event')->name('home.event')->middleware(statusUser::class);
+Route::get('open', 'HomeController@open')->name('open')->middleware(statusUser::class);
+Route::resource('front','FrontController')->middleware(statusUser::class);
+Route::resource('event','EventController')->middleware(statusAdmin::class);
+Route::resource('user','UserController')->middleware(statusAdmin::class);
+Route::resource('transaksi','TransaksiController')->middleware(statusAdmin::class);
+Route::get('/home_admin', 'Login@index');
 
-Route::get('dashboard', function () {
-    return view("dashboard.dashboard");
-});
-
-Route::resource('JenisEvent','JenisController');
-Route::resource('venue','VenueController');

@@ -14,6 +14,10 @@
   <!-- Icons -->
   <link href="{{ asset('assets/vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+  <link href="{{ asset('assets/dist/summernote.css')}}" rel="stylesheet">
+
+
   <!-- Argon CSS -->
   <link type="text/css" href="{{ asset('assets/css/argon.css?v=1.0.0')}}" rel="stylesheet">
 </head>
@@ -46,8 +50,24 @@
   <!-- Optional JS -->
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js?v=1.0.0')}}"></script>
+    <script src="{{ asset('assets/dist/summernote.js')}}"></script>
+
+        <script>
+             $(document).ready(function() {
+              $('#summernote').summernote();
+            });
+
+            $('#summernote').summernote({
+                height: 100,    
+                minHeight: 150,     
+                maxHeight: 400,    
+                focus: false    
+            });
+          </script>
 </body>
 
 </html>
