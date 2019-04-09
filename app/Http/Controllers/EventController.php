@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Event;
 use DB;
@@ -23,43 +22,11 @@ class EventController extends Controller
      */
     public function index(){
            
-        $event = Event::all();
+        $event = Event::with(['get_users','get_venue'])->get();
         return view('admin.event.dataEvent',compact('event'));
         
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-    }
 
     /**
      * Show the form for editing the specified resource.

@@ -13,4 +13,14 @@ class Transaksi extends Model
         'bukti_pembayaran','status_booking'
     ];
 
+    public function get_users()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
+
+    public function get_venue()
+    {
+        return $this->belongsTo(Venue::class,'id_venue');
+    }
+
 }   

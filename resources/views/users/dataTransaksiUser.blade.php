@@ -62,7 +62,7 @@
                                 
                             </td>
                             <td>{{$row->kode_transaksi}}</td>
-                            <td>{{$row->nama_tempat}}</td>
+                            <td>{{$row->get_venue->nama_tempat}}</td>
                             <td>Rp. {{$row->total_pembayaran}},00</td>
                             <td>
                                 <?php 

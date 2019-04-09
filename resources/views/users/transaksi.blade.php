@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-5 col-sm-12">
             <div class="gallery-single fix">
-                <img src="image/{{$venue->image}}" class="img-fluid" alt="Image">
+                <img src="{{ asset('assetsFrontend/uploads/banner4.jpg')}}" class="img-fluid" alt="Image">
             </div>
         </div>
         <div class="col-md-7 col-sm-12">

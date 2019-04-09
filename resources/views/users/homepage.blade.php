@@ -76,11 +76,9 @@
                         @endif
                         <div class="form-group">
                             <label class="control-label col-sm-4" style="font-size:14px;">Bukti Pembayaran : </label>
-                            @foreach($transaksi as $row)
                             <div class="col-sm-11">
                                 <a href="/open"><button class="btn btn-info" type="button"><i class="fa fa-money"></i> Transaksi Anda</button></a>
                             </div>
-                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -135,7 +133,7 @@
                                 <select class="form-control" name="id_venue">
                                     <option value="">Pilih Venue</option>
                                     @foreach($selVenue as $row)
-                                    <option value="{{$row->id_venue}}">{{$row->nama_tempat}}</option>
+                                    <option value="{{$row->id_venue}}">{{$row->get_venue->nama_tempat}}</option>
                                     @endforeach
                                 </select>
                             </div>

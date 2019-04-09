@@ -6,24 +6,12 @@
         <div class="card shadow">
             <div class="card-header border-0">
                 <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0">Data Event</h3>
+                    <div class="col-12">
+                        <center><h2 class="mb-0">Data Event</h2>
                     </div>
-                    <div class="col-4 text-right">
-
-                        <div class="col-lg-12" style="margin-top:8%">
-                            <div class="form-group">
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="Search Username" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 
                 </div>
-            </div>
+            </div><br><br>
 
             <div class="table-responsive" style="margin-top:-3%">
                     @if(session()->get('success'))
@@ -31,14 +19,16 @@
                         {{ session()->get('success') }}  
                       </div><br />
                     @endif
-                <table class="table align-items-center table-flush">
+                <table id="example2" class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>
                             <th>Action</th>
+                            <th>Nama</th>
                             <th>Nama Event</th>
                             <th>Jenis Event</th>
-                            <th>Pemateri</th>
+                            <th>Venue</th>
                             <th>Image</th>
+                            <th>Pemateri</th>
                             <th>Waktu Event</th>
                             <th>Deskripsi</th>
                         </tr>
@@ -63,11 +53,13 @@
                                 </button></a>
                           
                             </td>      
+                            <td>{{$row->get_users->nama}}</td>
                             <td>{{$row->nama_event}}</td>
                             <td>{{$row->jenis}}</td>
-                            <td>{{$row->pemateri}}</td>
+                            <td>{{$row->get_venue->nama_tempat}}</td>
                             <td><a href="images/{{ $row->image_event }}"><img src="images/{{ $row->image_event }}" width="200px" heigth="200px"></a></td>
                             <td>{{$row->waktu_event}}</td>
+                            <td>{{$row->pemateri}}</td>
                             <td>{!!$row->deskripsi_event!!}</td>
                         </tr>
                        @endforeach

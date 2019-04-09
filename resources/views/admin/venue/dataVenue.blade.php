@@ -6,27 +6,12 @@
         <div class="card shadow">
             <div class="card-header border-0">
                 <div class="row align-items-center">
-                    <div class="col-8">
-                        <h3 class="mb-0">Data Venue</h3>
+                    <div class="col-12">
+                        <center><h2 class="mb-0">Data Venue</h2>
                     </div>
-                    <div class="col-4 text-right">
-                        <button class="btn btn-icon btn-sm btn-info" type="button" data-toggle="modal" data-target="#modal-notification">
-                        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
-                        <span class="btn-inner--text"> Add Data</span>
-                        </button><br>
-                        <div class="col-lg-12" style="margin-top:8%">
-                            <div class="form-group">
-                                <div class="input-group mb-4">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                                    </div>
-                                    <input class="form-control" placeholder="Search Nama Tempat" type="text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                 
                 </div>
-            </div>
+            </div><br><br>
 
           <!-- Modal Add Data -->
         <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
@@ -98,13 +83,13 @@
 
           <!-- End Modal -->
 
-            <div class="table-responsive" style="margin-top:-3%">
+            <div class="table-responsive" style="margin-top:-3%;margin-left:6%">
                     @if(session()->get('success'))
                       <div class="alert alert-success">
                         {{ session()->get('success') }}  
                       </div><br />
                     @endif
-                <table class="table align-items-center table-flush">
+                <table id="example2" class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>
                             <th>Action</th>

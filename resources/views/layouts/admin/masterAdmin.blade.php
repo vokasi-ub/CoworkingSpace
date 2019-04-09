@@ -14,6 +14,7 @@
   <!-- Icons -->
   <link href="{{ asset('assets/vendor/nucleo/css/nucleo.css')}}" rel="stylesheet">
   <link href="{{ asset('assets/vendor/@fortawesome/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+  <link href="{{ asset('assets/datatable/dataTables.bootstrap.css')}}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
   <link href="{{ asset('assets/dist/summernote.css')}}" rel="stylesheet">
 
@@ -47,6 +48,8 @@
   <!-- Core -->
   <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('assets/datatable/jquery.dataTables.min.js')}}"></script>
+  <script src="{{ asset('assets/datatable/dataTables.bootstrap.min.js')}}"></script>
   <!-- Optional JS -->
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.min.js')}}"></script>
   <script src="{{ asset('assets/vendor/chart.js/dist/Chart.extension.js')}}"></script>
@@ -54,7 +57,21 @@
 
   <!-- Argon JS -->
   <script src="{{ asset('assets/js/argon.js?v=1.0.0')}}"></script>
-    <script src="{{ asset('assets/dist/summernote.js')}}"></script>
+  <script src="{{ asset('assets/dist/summernote.js')}}"></script>
+
+      <script>
+          $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+              "paging": false,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+              "info": true,
+              "autoWidth": true
+            });
+          });
+        </script>
 
         <script>
              $(document).ready(function() {

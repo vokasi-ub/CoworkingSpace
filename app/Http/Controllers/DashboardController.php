@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Venue;
+use App\User;
+use App\Transaksi;
+use App\Venue;
+use App\Event;
 use DB;
 use \Auth;
 
@@ -20,7 +23,13 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.dashboard');
+        $venue      = Venue::All()->count();
+        $user       = User::where('status','User')->count();
+        $transaksi  = Transaksi::where('status_booking','booking')->count();
+        $event      = Event::All()->count();
+
+
+        return view('admin.dashboard.dashboard',compact('venue','user','transaksi','event'));
     }
 
     /**

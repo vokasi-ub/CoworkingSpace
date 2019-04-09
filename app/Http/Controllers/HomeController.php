@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Venue;
 use App\Event;
 use App\Transaksi;
@@ -31,14 +32,12 @@ class HomeController extends Controller
   
         public function index()
         {
-		   
                 $venue = Venue::all();
                 $transaksi = Transaksi::where('status_booking','belum terverifikasi')->get();
-                $selVenue = DB::table('transaksi')
-                    ->join('venue', 'transaksi.id_venue', '=', 'venue.id_venue')
-                    ->where('status_booking','booking')
-                    ->where('id',auth()->user()->id )
-                    ->get();
+                $selVenue = Transaksi::with(['get_users','get_venue'])
+                                        ->where('status_booking','booking')
+                                        ->where('id',auth()->user()->id)
+                                        ->get();
 				return view('users.homepage',compact('venue','selVenue','transaksi'));
                 
         }
@@ -46,10 +45,9 @@ class HomeController extends Controller
         //data transaksi
         public function open()
         {
-                $transaksi = DB::table('transaksi')
-                    ->join('venue', 'transaksi.id_venue', '=', 'venue.id_venue')
-                    ->where('id',auth()->user()->id )
-                    ->get();
+                $transaksi = Transaksi::with('get_venue')
+                            ->where('id',auth()->user()->id )
+                            ->get();
 				return view('users.dataTransaksiUser',compact('transaksi'));
                 
         }
@@ -75,7 +73,11 @@ class HomeController extends Controller
         
         $imageName = time().'.'.$request->image_event->getClientOriginalExtension();
         $request->image_event->move(public_path('images'), $imageName);
-        
+
+
+        $user = \App\User::first();
+        $user->notify(new \App\Notifications\NewEvent);
+
           $event = new Event([
           'id'   => $request->get('id'),
           'id_venue'      => $request->get('id_venue'),
@@ -87,6 +89,25 @@ class HomeController extends Controller
           'image_event'   => $imageName
           ]);
           $event->save();
+            
+            $data = array(
+            'nama_event' => $request->nama_event,
+            'jenis'      => $request->jenis,
+            'waktu_event'=> $request->waktu_event,
+            'deskripsi_event'=> $request->deskripsi_event
+            );
+          $email = Auth::user()->email;
+
+            Mail::send('notif_email',$data, function($mail) use ($email){
+            $mail->to($email,'no-reply')
+                ->subject("[Notifikasi Event Anda @onNext]");
+            $mail->from('hafadseptiyan20@gmail.com','Notifikasi-Event');    
+          });
+
+          if(Mail::failures()){
+              return "Gagal";
+          }
+          
           return redirect('http://localhost:8000/home#make')->with('success','Berhasil Membuat Event');
         }
 

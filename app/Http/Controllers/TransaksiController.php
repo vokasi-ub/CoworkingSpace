@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Transaksi;
 use DB;
 use \Auth;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
 
@@ -24,44 +25,8 @@ class TransaksiController extends Controller
     public function index()
     {
        
-        $transaksi = DB::table('transaksi')
-            ->join('venue', 'transaksi.id_venue', '=', 'venue.id_venue')
-            ->join('users', 'transaksi.id', '=', 'users.id')
-            ->get();
+        $transaksi = Transaksi::with(['get_users','get_venue'])->get();
         return view('admin.transaksi.dataTransaksi',compact('transaksi'));
-        
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-     
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
         
     }
 
