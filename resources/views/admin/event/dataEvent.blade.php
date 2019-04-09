@@ -4,14 +4,25 @@
 <div class="row">
     <div class="col">
         <div class="card shadow">
-            <div class="card-header border-0">
-                <div class="row align-items-center">
-                    <div class="col-12">
-                        <center><h2 class="mb-0">Data Event</h2>
-                    </div>
-                 
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Data Transaksi</h3>
                 </div>
-            </div><br><br>
+                <div class="col-4 text-right">
+                    <form action="{{ url()->current() }}" class="sidebar">
+                      <div class="input-group float-right mr-3 mb-3">
+                        <input type="text" name="keyword" class="form-control" placeholder="Search Nama Event ">
+                          <span class="input-group-btn">
+                            <button type="submit" name="Search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            </button>
+                          </span>
+                        </input>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div><br>
 
             <div class="table-responsive" style="margin-top:-3%">
                     @if(session()->get('success'))

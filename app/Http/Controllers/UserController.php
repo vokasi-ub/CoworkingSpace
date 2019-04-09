@@ -21,10 +21,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       
-        $user = User::where('status','User')->get();
+        $user = User::when($request->keyword, function ($query) use ($request) {
+        $query->where('nama', 'like', "%{$request->keyword}%");
+        })->where('status','User')->get();
         return view('admin.user.dataUser',compact('user'));
         
     }

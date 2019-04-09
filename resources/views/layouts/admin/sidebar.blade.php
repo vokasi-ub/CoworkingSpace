@@ -111,7 +111,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="./event">
+            <a class="nav-link" href="/event">
               <i class="ni ni-book-bookmark text-green"></i> Event
             </a>
           </li>

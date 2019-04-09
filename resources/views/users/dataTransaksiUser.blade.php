@@ -9,10 +9,21 @@
     </center>
 </div>
 <br><br><br>
-<div class="container">
-    <div class="row">
-   
-         <div class="table-responsive" style="margin-top:-3%">
+    <div class="container">
+        <div class="row">
+                <div class="col-3 text-right">
+                    <form action="{{ url()->current() }}" class="sidebar">
+                      <div class="input-group float-right mr-3 mb-3">
+                        <input type="text" name="keyword" class="form-control" placeholder="Search Kode Transaksi">
+                          <span class="input-group-btn">
+                            <button type="submit" name="Search" id="search-btn" class="btn btn-info"><i class="fa fa-search"></i>
+                            </button>
+                          </span>
+                        </input>
+                      </div>
+                    </form>
+                </div><br><br><br><br>
+            <div class="table-responsive" style="margin-top:-3%">
                     @if(session()->get('success'))
                       <div class="alert alert-success">
                         {{ session()->get('success') }}  

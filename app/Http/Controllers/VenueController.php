@@ -21,10 +21,10 @@ class VenueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(\Illuminate\Http\Request $request)
+    public function index(Request $request)
     {
         $venue = Venue::when($request->keyword, function ($query) use ($request) {
-        $query->where('nama_venue', 'like', "%{$request->keyword}%");
+        $query->where('nama_tempat', 'like', "%{$request->keyword}%");
         })->get();
         return view('admin.venue.dataVenue',compact('venue'));
         
@@ -109,20 +109,29 @@ class VenueController extends Controller
                 'nama_tempat'   =>'required',
                 'harga'         =>'required',
                 'deskripsi'     =>'required',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
             ]);
-            $imageName = time().'.'.$request->image->getClientOriginalExtension();
-            $request->image->move(public_path('images'), $imageName);
-
-          $venue = Venue::find($id);
-          $venue->nama_tempat   = $request->get('nama_tempat');
-          $venue->harga         = $request->get('harga');
-          $venue->deskripsi     = $request->get('deskripsi');
-          $venue->image         = $imageName;
-          $venue->save();
-          return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
-    }
+            $venue = Venue::find($id);
+            if($venue->image>0){
+                $venue = Venue::find($id);
+                $venue->nama_tempat   = $request->get('nama_tempat');
+                $venue->harga         = $request->get('harga');
+                $venue->deskripsi     = $request->get('deskripsi');
+                $venue->save();
+                return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
+            } else {
+                $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                $request->image->move(public_path('images'), $imageName);
+                
+                $venue = Venue::find($id);
+                $venue->nama_tempat   = $request->get('nama_tempat');
+                $venue->harga         = $request->get('harga');
+                $venue->deskripsi     = $request->get('deskripsi');
+                $venue->image         = $imageName;
+                $venue->save();
+                return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
+            }
+        }
 	
     /** 
      * Remove the specified resou   rce from storage.

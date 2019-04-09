@@ -43,11 +43,14 @@ class HomeController extends Controller
         }
 
         //data transaksi
-        public function open()
+        public function open(Request $request)
         {
-                $transaksi = Transaksi::with('get_venue')
-                            ->where('id',auth()->user()->id )
-                            ->get();
+                $transaksi = Transaksi::with(['get_venue'])->where('id',auth()->user()->id )->when($request->keyword, function ($query) use ($request) {
+                $query->where('kode_transaksi', 'like', "%{$request->keyword}%");
+                })->get();
+                // $transaksi = Transaksi::with('get_venue')
+                //             ->where('id',auth()->user()->id )
+                //             ->get();
 				return view('users.dataTransaksiUser',compact('transaksi'));
                 
         }

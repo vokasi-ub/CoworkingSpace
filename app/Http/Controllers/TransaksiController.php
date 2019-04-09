@@ -22,10 +22,11 @@ class TransaksiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       
-        $transaksi = Transaksi::with(['get_users','get_venue'])->get();
+        $transaksi = Transaksi::with(['get_users','get_venue'])->when($request->keyword, function ($query) use ($request) {
+        $query->where('kode_transaksi', 'like', "%{$request->keyword}%");
+        })->get();
         return view('admin.transaksi.dataTransaksi',compact('transaksi'));
         
     }

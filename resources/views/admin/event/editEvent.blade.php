@@ -10,7 +10,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form method="post" action="{{ route('event.update',$event->id)}}" enctype="multipart/form-data"> 
+              <form method="post" action="{{ route('event.update',$event->id_event)}}" enctype="multipart/form-data"> 
                    @method('PATCH')
                 @csrf
                 @if ($errors->any())

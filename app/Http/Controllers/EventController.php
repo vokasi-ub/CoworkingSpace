@@ -20,11 +20,12 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index(Request $request){
            
-        $event = Event::with(['get_users','get_venue'])->get();
+        $event = Event::with(['get_users','get_venue'])->when($request->keyword, function ($query) use ($request) {
+        $query->where('nama_event', 'like', "%{$request->keyword}%");
+        })->get();
         return view('admin.event.dataEvent',compact('event'));
-        
     }
 
 
@@ -55,13 +56,27 @@ class EventController extends Controller
                 'pemateri'          =>'required'
 
             ]);
-            
-          $event = Event::find($id);
-          $event->nama_event  = $request->get('nama_event');
-          $event->deskripsi_event = $request->get('deskripsi_event');
-          $event->pemateri    = $request->get('pemateri');
-          $event->save();
-          return redirect('/event')->with('success', 'Data event Berhasil Terupdate');
+            $event = Event::find($id);
+            if($event->image_event>0){
+                $event = Event::find($id);
+                $event->nama_event  = $request->get('nama_event');
+                $event->deskripsi_event = $request->get('deskripsi_event');
+                $event->pemateri    = $request->get('pemateri');
+                $event->save();
+                return redirect('/event')->with('success', 'Data event Berhasil Terupdate');
+            }else {
+                $imageName = time().'.'.$request->image_event->getClientOriginalExtension();
+                $request->image_event->move(public_path('images'), $imageName);
+                
+                $event = Event::find($id);
+                $event->nama_event  = $request->get('nama_event');
+                $event->deskripsi_event = $request->get('deskripsi_event');
+                $event->pemateri    = $request->get('pemateri');
+                $event->image_event = $imageName;
+                $event->save();
+                return redirect('/event')->with('success', 'Data event Berhasil Terupdate');
+            }    
+         
     }
 	
     /** 
