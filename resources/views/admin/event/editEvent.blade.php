@@ -44,6 +44,13 @@
                          <textarea id="summernote" name="deskripsi_event" rows="4">{!!$event->deskripsi_event!!}</textarea>
                         </div>
                     </div>
+
+                    <div class="col-lg-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Image Event</label>
+                        <input type="file" class="form-control" name="image_event">
+                        </div>
+                    </div>
             
            
                   </div>

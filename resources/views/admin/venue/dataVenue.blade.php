@@ -97,7 +97,7 @@
 
             <div class="table-responsive">
                     @if(session()->get('success'))
-                      <div class="alert alert-success">
+                      <div class="alert alert-success alert-close">
                         {{ session()->get('success') }}  
                       </div><br />
                     @endif
@@ -122,7 +122,7 @@
                                 <a onclick="return confirm('Are you sure?')"><button class="btn btn-icon btn-sm btn-danger" type="submit">
                                 <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
                                 <span class="btn-inner--text">Delete</span>
-                                </button></a<<br>
+                                </button></a><br>
                                 </form>
 
                                 <a href="{{ route('venue.edit',$row->id_venue)}}"><button class="btn btn-icon btn-sm btn-info" type="button"  style="width:82px;margin-top:4%">

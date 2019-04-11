@@ -69,8 +69,8 @@
                             <td>{{$row->jenis}}</td>
                             <td>{{$row->get_venue->nama_tempat}}</td>
                             <td><a href="images/{{ $row->image_event }}"><img src="images/{{ $row->image_event }}" width="200px" heigth="200px"></a></td>
-                            <td>{{$row->waktu_event}}</td>
                             <td>{{$row->pemateri}}</td>
+                            <td>{{$row->waktu_event}}</td>
                             <td>{!!$row->deskripsi_event!!}</td>
                         </tr>
                        @endforeach

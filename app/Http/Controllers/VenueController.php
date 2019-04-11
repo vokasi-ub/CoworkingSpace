@@ -111,26 +111,25 @@ class VenueController extends Controller
                 'deskripsi'     =>'required',
 
             ]);
-            $venue = Venue::find($id);
-            if($venue->image>0){
-                $venue = Venue::find($id);
-                $venue->nama_tempat   = $request->get('nama_tempat');
-                $venue->harga         = $request->get('harga');
-                $venue->deskripsi     = $request->get('deskripsi');
-                $venue->save();
-                return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
-            } else {
                 $imageName = time().'.'.$request->image->getClientOriginalExtension();
                 $request->image->move(public_path('images'), $imageName);
-                
+
                 $venue = Venue::find($id);
-                $venue->nama_tempat   = $request->get('nama_tempat');
-                $venue->harga         = $request->get('harga');
-                $venue->deskripsi     = $request->get('deskripsi');
-                $venue->image         = $imageName;
-                $venue->save();
-                return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
-            }
+                if(empty($request->image)){
+                    $venue->nama_tempat   = $request->get('nama_tempat');
+                    $venue->harga         = $request->get('harga');
+                    $venue->deskripsi     = $request->get('deskripsi');
+                    $venue->save();
+                    return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');       
+                } else {                     
+                    $venue->nama_tempat   = $request->get('nama_tempat');
+                    $venue->harga         = $request->get('harga');
+                    $venue->deskripsi     = $request->get('deskripsi');
+                    $venue->image         = $imageName;
+                    $venue->save();
+                    return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');
+                }  
+                
         }
 	
     /** 

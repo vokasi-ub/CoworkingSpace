@@ -56,8 +56,11 @@ class EventController extends Controller
                 'pemateri'          =>'required'
 
             ]);
+            $imageName = time().'.'.$request->image_event->getClientOriginalExtension();
+            $request->image_event->move(public_path('images'), $imageName);
+                
             $event = Event::find($id);
-            if($event->image_event>0){
+            if(empty($request->image_event)){
                 $event = Event::find($id);
                 $event->nama_event  = $request->get('nama_event');
                 $event->deskripsi_event = $request->get('deskripsi_event');
@@ -65,8 +68,6 @@ class EventController extends Controller
                 $event->save();
                 return redirect('/event')->with('success', 'Data event Berhasil Terupdate');
             }else {
-                $imageName = time().'.'.$request->image_event->getClientOriginalExtension();
-                $request->image_event->move(public_path('images'), $imageName);
                 
                 $event = Event::find($id);
                 $event->nama_event  = $request->get('nama_event');

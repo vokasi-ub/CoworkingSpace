@@ -45,11 +45,7 @@
                     <label>Deskripsi</label>
                     <textarea id="summernote" name="deskripsi" rows="4">{{$venue->deskripsi}}</textarea><br>
                     
-                    <?php if($venue->image >0){?>
-                    <input type="hidden" class="form-control">
-                    <?php } else {?>
                     <input type="file" name="image" class="form-control">
-                    <?php }?>
                      <br><button class="btn btn-icon btn-3 btn-info  " type="submit">
                             <span class="btn-inner--icon"><i class="ni ni-check-bold"></i></span>
                             
@@ -58,6 +54,7 @@
                         </button>  
                   </div>
                 </div>
+                
                 
               </form>
             </div>
