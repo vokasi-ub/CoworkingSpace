@@ -111,8 +111,7 @@ class VenueController extends Controller
                 'deskripsi'     =>'required',
 
             ]);
-                $imageName = time().'.'.$request->image->getClientOriginalExtension();
-                $request->image->move(public_path('images'), $imageName);
+               
 
                 $venue = Venue::find($id);
                 if(empty($request->image)){
@@ -121,7 +120,9 @@ class VenueController extends Controller
                     $venue->deskripsi     = $request->get('deskripsi');
                     $venue->save();
                     return redirect('/venue')->with('success', 'Data venue Berhasil Terupdate');       
-                } else {                     
+                } else {       
+                     $imageName = time().'.'.$request->image->getClientOriginalExtension();
+                $request->image->move(public_path('images'), $imageName);              
                     $venue->nama_tempat   = $request->get('nama_tempat');
                     $venue->harga         = $request->get('harga');
                     $venue->deskripsi     = $request->get('deskripsi');
